@@ -1,0 +1,26 @@
+@host = http://localhost:3000
+POST {{host}}/users
+content-type: application/json
+
+{
+    "username": "Test User", 
+    "password": "password"
+}
+
+###
+POST {{host}}/users
+content-type: application/json
+
+{
+    "username": "Test User4", 
+    "password": "password4"
+}
+
+###
+POST {{host}}/users/authenticate
+content-type: application/json
+
+{
+    "username": "Test User3", 
+    "password": "password3"
+}
