@@ -1,4 +1,4 @@
-import { BooksStore } from './books';
+import { BooksStore } from './book';
 const store = new BooksStore();
 
 describe('BooksStore', () => {
