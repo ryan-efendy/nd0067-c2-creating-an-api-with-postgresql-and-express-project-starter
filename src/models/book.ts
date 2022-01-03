@@ -1,7 +1,7 @@
 import client from '../database';
 
 export type Book = {
-    id: number;
+    id?: number;
     title: string;
     total_pages: number;
     author: string;
@@ -9,7 +9,7 @@ export type Book = {
     summary: string;
 };
 
-export class BooksStore {
+export class BookStore {
     async index(): Promise<Book[]> {
         let conn;
         try {

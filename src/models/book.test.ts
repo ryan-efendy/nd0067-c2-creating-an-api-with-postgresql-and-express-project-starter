@@ -1,5 +1,5 @@
-import { BooksStore } from './book';
-const store = new BooksStore();
+import { BookStore } from './book';
+const store = new BookStore();
 
 describe('BooksStore', () => {
     it('should have an index method', () => {
