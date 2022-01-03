@@ -4,7 +4,7 @@ import { Pool } from 'pg';
 const { ENV, POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_TEST_DB, POSTGRES_DEV1_DB } =
     process.env;
 
-console.log(ENV);
+console.log(`ENV: ${ENV}`);
 
 let client = new Pool({
     host: POSTGRES_HOST,
