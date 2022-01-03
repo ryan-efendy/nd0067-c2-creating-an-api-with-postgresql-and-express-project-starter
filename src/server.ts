@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import articles_routes from './handlers/article';
+import articles_routes from './routes/article';
 
 const app = express();
 const address = '0.0.0.0:3000';
