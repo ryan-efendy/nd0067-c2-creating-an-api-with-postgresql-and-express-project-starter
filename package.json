@@ -8,12 +8,13 @@
     "tsc": "tsc",
     "test": "jest",
     "test:int": "ENV=test npm run migrate:up && npm run test && npm run migrate:down",
-    "migrate:up": "db-migrate --env test up",
-    "migrate:down": "db-migrate --env test down"
+    "migrate:up": "db-migrate up -e dev1",
+    "migrate:down": "db-migrate down -e dev1"
   },
   "author": "Udacity",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "db-migrate": "^1.0.0-beta.18",
     "db-migrate-pg": "^1.2.2",
@@ -21,17 +22,16 @@
     "pg": "^8.7.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/db-migrate-pg": "^0.0.10",
     "@types/express": "^4.17.13",
+    "@types/fs-extra": "^9.0.13",
+    "@types/jest": "^27.4.0",
     "@types/node": "^17.0.5",
     "@types/pg": "^8.6.3",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
-    "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^27.4.0",
     "dotenv": "^10.0.0",
-    "ts-node": "^10.4.0",
-    "ts-node-dev": "^2.0.0-0",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -41,6 +41,8 @@
     "jest": "^27.4.5",
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^2.0.0-0",
     "typescript": "^4.5.4"
   }
 }
