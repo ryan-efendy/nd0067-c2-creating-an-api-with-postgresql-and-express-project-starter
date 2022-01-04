@@ -1,23 +1,23 @@
 {
-    "dev": {
-      "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "books_dev",
-      "user": "postgres",
-      "password": "postgres"
-    },
-    "test": {
-      "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "books_test",
-      "user": "postgres",
-      "password": "postgres"
-    },
-    "dev1": {
-      "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "full_stack_dev",
-      "user": "postgres",
-      "password": "postgres"
-    }
+  "dev": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "books_dev",
+    "user": "postgres",
+    "password": "postgres"
+  },
+  "test": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "books_test",
+    "user": "postgres",
+    "password": "postgres"
+  },
+  "dev1": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "full_stack_dev",
+    "user": "postgres",
+    "password": "postgres"
   }
+}
