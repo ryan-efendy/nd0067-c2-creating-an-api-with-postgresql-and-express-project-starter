@@ -1,47 +1,13 @@
-import { Router, Request, Response } from 'express';
-import { ProductStore } from '../models/product';
+import { deleteProduct, getProduct, getProducts, createProduct } from './../controllers/product';
+import { Router } from 'express';
 
 const products = Router();
 
-const store = new ProductStore();
+products.get('/', getProducts);
 
-products.get('/', async (_req: Request, res: Response) => {
-    try {
-        const products = await store.index();
-        res.json(products);
-    } catch (err) {
-        res.status(400);
-        res.json(err);
-    }
-});
+products.get('/:id', getProduct);
 
-products.get('/:id', async (req: Request, res: Response) => {
-    try {
-        const product = await store.show(+req.params.id);
-        res.json(product);
-    } catch (err) {
-        res.status(400);
-        res.json(err);
-    }
-});
+products.post('/', createProduct);
 
-products.post('/', async (req: Request, res: Response) => {
-    try {
-        const product = await store.create(req.body);
-        res.json(product);
-    } catch (err) {
-        res.status(400);
-        res.json(err);
-    }
-});
-
-products.delete('/:id', async (req: Request, res: Response) => {
-    try {
-        const product = await store.delete(+req.params.id);
-        res.json(product);
-    } catch (err) {
-        res.status(400);
-        res.json(err);
-    }
-});
+products.delete('/:id', deleteProduct);
 export default products;
