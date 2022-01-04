@@ -1,4 +1,12 @@
 @host = http://localhost:3000
+
+GET {{host}}
+
+###
+
+GET {{host}}/health
+
+###
 POST {{host}}/users
 content-type: application/json
 
@@ -24,3 +32,7 @@ content-type: application/json
     "username": "Test User3", 
     "password": "password3"
 }
+
+###
+GET {{host}}/api/products
+content-type: application/json
