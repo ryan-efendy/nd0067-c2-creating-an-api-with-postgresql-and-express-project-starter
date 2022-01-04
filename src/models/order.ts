@@ -2,8 +2,10 @@ import client from '../database';
 
 export type Order = {
     id?: number;
-    status: string;
+    product_id: number;
     user_id: number;
+    quantity: number;
+    status: 'active' | 'complete';
 };
 
 export class OrderStore {
@@ -35,12 +37,13 @@ export class OrderStore {
         }
     }
 
-    async create({ status, user_id }: Order): Promise<Order> {
+    async create({ product_id, user_id, quantity, status }: Order): Promise<Order> {
         let conn;
         try {
             conn = await client.connect();
-            const sql = 'INSERT INTO Orders (status, user_id) VALUES ($1, $2) RETURNING *';
-            const result = await conn.query(sql, [status, user_id]);
+            const sql =
+                'INSERT INTO Orders (product_id, user_id, quantity, status) VALUES ($1, $2, $3, $4) RETURNING *';
+            const result = await conn.query(sql, [product_id, user_id, quantity, status]);
             return result.rows[0];
         } catch (error) {
             throw new Error(`Could not add new Order. Error: ${error}`);
@@ -63,12 +66,12 @@ export class OrderStore {
         }
     }
 
-    async addProduct(quantity: number, orderId: string, productId: string): Promise<Order> {
+    async getOrderByUser(user_id: string): Promise<Order> {
         try {
-            const sql = 'INSERT INTO order_products (quantity, order_id, product_id) VALUES($1, $2, $3) RETURNING *';
+            const sql = 'SELECT * FROM Orders WHERE user_id=($1)';
             const conn = await client.connect();
 
-            const result = await conn.query(sql, [quantity, orderId, productId]);
+            const result = await conn.query(sql, [user_id]);
 
             const order = result.rows[0];
 
@@ -76,7 +79,25 @@ export class OrderStore {
 
             return order;
         } catch (err) {
-            throw new Error(`Could not add product ${productId} to order ${orderId}: ${err}`);
+            throw new Error(`Could not find Order for userId ${user_id}. Error: ${err}`);
+        }
+    }
+
+    async getCompletedOrdersByUser(user_id: string): Promise<Order> {
+        try {
+            //TODO: double check this query
+            const sql = 'SELECT * FROM Orders WHERE user_id=($1) AND status=complete';
+            const conn = await client.connect();
+
+            const result = await conn.query(sql, [user_id]);
+
+            const order = result.rows[0];
+
+            conn.release();
+
+            return order;
+        } catch (err) {
+            throw new Error(`Could not find completed Order for userId ${user_id}. Error: ${err}`);
         }
     }
 }
