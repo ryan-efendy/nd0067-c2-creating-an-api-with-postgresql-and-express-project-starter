@@ -32,11 +32,11 @@ export const getUsers = async (_req: Request, res: Response) => {
 };
 
 export const getUser = async (req: Request, res: Response) => {
-    const user = await store.show(req.params.id);
+    const user = await store.show(+req.params.id);
     res.json(user);
 };
 
 export const deleteUser = async (req: Request, res: Response) => {
-    const user = await store.delete(req.params.id);
+    const user = await store.delete(+req.params.id);
     res.json(user);
 };
