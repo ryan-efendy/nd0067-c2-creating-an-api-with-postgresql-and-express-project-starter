@@ -8,8 +8,8 @@
     "tsc": "tsc",
     "test": "jest",
     "test:int": "ENV=test npm run migrate:up && npm run test && npm run migrate:down",
-    "migrate:up": "db-migrate up -e dev1",
-    "migrate:down": "db-migrate down -e dev1"
+    "migrate:up": "db-migrate up -e dev",
+    "migrate:down": "db-migrate down -e dev"
   },
   "author": "Udacity",
   "license": "ISC",
@@ -19,7 +19,10 @@
     "db-migrate-pg": "^1.2.2",
     "express": "^5.0.0-alpha.8",
     "jsonwebtoken": "^8.5.1",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "pino": "^7.6.2",
+    "pino-http": "^6.5.0",
+    "pino-pretty": "^7.3.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -32,6 +35,9 @@
     "@types/pg": "^8.6.3",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
+    "@types/pino": "^7.0.5",
+    "@types/pino-http": "^5.8.1",
+    "@types/pino-pretty": "^4.7.4",
     "dotenv": "^10.0.0",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
