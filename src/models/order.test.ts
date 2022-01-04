@@ -119,18 +119,4 @@ describe('OrderStore', () => {
             });
         }
     });
-
-    // it('delete method should remove the product', async () => {
-    //     const product: Product = {
-    //         name: 'book3',
-    //         price: 19.99,
-    //         category: 'Books'
-    //     };
-    //     const { id } = await orderStore.create(product);
-
-    //     await orderStore.delete(id!);
-    //     const result = await orderStore.show(id!);
-
-    //     expect(result).toEqual(undefined);
-    // });
 });
