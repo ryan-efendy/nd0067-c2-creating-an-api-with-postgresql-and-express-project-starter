@@ -6,7 +6,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 ## API Endpoints
 #### Products
 - Index 
-- Show
+- Show  
 - Create [token required]
 - [OPTIONAL] Top 5 most popular products 
 - [OPTIONAL] Products by category (args: product category)
@@ -14,7 +14,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Users
 - Index [token required]
 - Show [token required]
-- Create N[token required]
+- Create [token required]
 
 #### Orders
 - Current Order by user (args: user id)[token required]
@@ -40,3 +40,10 @@ These are the notes from a meeting with the frontend developer that describe wha
 - user_id
 - status of order (active or complete)
 
+---
+
+[Storefront REST API Documentation](https://ryanefendy.stoplight.io/docs/storefront-api/YXBpOjMzOTMxNzg5-storefront-api)
+
+[Storefront Database Design](https://dbdiagram.io/d/61d3d2523205b45b73d5aee3)
+
+![storefront database design](./storefront-tables.png)
