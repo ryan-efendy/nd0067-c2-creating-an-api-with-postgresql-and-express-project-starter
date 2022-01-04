@@ -24,7 +24,8 @@ module.exports = {
         'node/no-unsupported-features/es-syntax': 0,
         'node/no-missing-import': 0, // this is a bug in eslint-plugin-node
         'import/no-named-as-default': 0,
-        'node/no-unpublished-import': 0
+        'node/no-unpublished-import': 0,
+        'import/no-named-as-default-member': 0
     },
     settings: {
         'import/resolver': {
