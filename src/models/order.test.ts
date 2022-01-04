@@ -27,10 +27,6 @@ describe('OrderStore', () => {
         expect(orderStore.getOrdersByUser).toBeDefined();
     });
 
-    it('should have a getCompletedOrdersByUser method', () => {
-        expect(orderStore.getCompletedOrdersByUser).toBeDefined();
-    });
-
     it('create method should add an order - active', async () => {
         let product = await productStore.show(1);
         if (!product) {

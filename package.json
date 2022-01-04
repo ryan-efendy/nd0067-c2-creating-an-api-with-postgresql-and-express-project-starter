@@ -9,7 +9,8 @@
     "test": "jest",
     "test:int": "ENV=test npm run migrate:up && npm run test && npm run migrate:down",
     "migrate:up": "db-migrate up -e dev",
-    "migrate:down": "db-migrate down -e dev"
+    "migrate:down": "db-migrate down -e dev",
+    "prod": "tsc && node ./dist/server.js"
   },
   "author": "Udacity",
   "license": "ISC",
