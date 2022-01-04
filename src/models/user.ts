@@ -13,7 +13,7 @@ export class UserStore {
     async create({ firstname, lastname, password }: User): Promise<User> {
         try {
             const conn = await client.connect();
-            const sql = 'INSERT INTO users (firstname, lastname, password) VALUES($1, $2) RETURNING *';
+            const sql = 'INSERT INTO users (firstname, lastname, password) VALUES($1, $2, $3) RETURNING *';
 
             const hash = hashSync(password + pepper, parseInt(SALT_ROUNDS!));
 
@@ -66,7 +66,7 @@ export class UserStore {
         }
     }
 
-    async show(id: string): Promise<User> {
+    async show(id: number): Promise<User> {
         try {
             const sql = 'SELECT * FROM users WHERE id=($1)';
             const conn = await client.connect();
@@ -81,7 +81,7 @@ export class UserStore {
         }
     }
 
-    async delete(id: string): Promise<User> {
+    async delete(id: number): Promise<User> {
         try {
             const conn = await client.connect();
             const sql = 'DELETE FROM users WHERE id=($1)';

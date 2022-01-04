@@ -36,12 +36,12 @@ describe('ProductStore', () => {
         expect(result.category).toEqual(product.category);
     });
 
-    it('index method should return a list of books', async () => {
+    it('index method should return a list of products', async () => {
         const result = await store.index();
         expect(result.length).toBeGreaterThan(0);
     });
 
-    it('show method should return the correct book', async () => {
+    it('show method should return the correct product', async () => {
         const product: Product = {
             name: 'book2',
             price: 9.99,
@@ -56,7 +56,7 @@ describe('ProductStore', () => {
         });
     });
 
-    it('delete method should remove the book', async () => {
+    it('delete method should remove the product', async () => {
         const product: Product = {
             name: 'book3',
             price: 19.99,

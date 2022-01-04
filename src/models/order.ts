@@ -66,14 +66,14 @@ export class OrderStore {
         }
     }
 
-    async getOrderByUser(user_id: string): Promise<Order> {
+    async getOrdersByUser(user_id: number): Promise<Order[]> {
         try {
             const sql = 'SELECT * FROM Orders WHERE user_id=($1)';
             const conn = await client.connect();
 
             const result = await conn.query(sql, [user_id]);
 
-            const order = result.rows[0];
+            const order = result.rows;
 
             conn.release();
 
@@ -83,7 +83,7 @@ export class OrderStore {
         }
     }
 
-    async getCompletedOrdersByUser(user_id: string): Promise<Order> {
+    async getCompletedOrdersByUser(user_id: number): Promise<Order> {
         try {
             //TODO: double check this query
             const sql = 'SELECT * FROM Orders WHERE user_id=($1) AND status=complete';
