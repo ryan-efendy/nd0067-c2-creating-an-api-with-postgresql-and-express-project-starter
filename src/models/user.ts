@@ -2,46 +2,48 @@ import { hashSync, compareSync } from 'bcrypt';
 import client from '../database';
 export type User = {
     id?: number;
-    username: string;
-    password_digest: string;
+    firstname: string;
+    lastname: string;
+    password: string;
 };
 
 const { CRYPT_PASSWORD: pepper, SALT_ROUNDS } = process.env;
 
 export class UserStore {
-    async create({ username, password_digest }: User): Promise<User> {
+    async create({ firstname, lastname, password }: User): Promise<User> {
         try {
             const conn = await client.connect();
-            const sql = 'INSERT INTO users (username, password_digest) VALUES($1, $2) RETURNING *';
+            const sql = 'INSERT INTO users (firstname, lastname, password) VALUES($1, $2) RETURNING *';
 
-            const hash = hashSync(password_digest + pepper, parseInt(SALT_ROUNDS!));
+            const hash = hashSync(password + pepper, parseInt(SALT_ROUNDS!));
 
-            const result = await conn.query(sql, [username, hash]);
+            const result = await conn.query(sql, [firstname, lastname, hash]);
 
-            const user = result.rows[0];
+            const user: User = result.rows[0];
 
             conn.release();
 
             return user;
         } catch (err) {
-            throw new Error(`Unable to create user ${username}. Error: ${err}`);
+            throw new Error(`Unable to create user ${firstname} ${lastname}. Error: ${err}`);
         }
     }
 
-    async authenticate({ username, password_digest }: User): Promise<User | null> {
+    async authenticate({ firstname, lastname, password }: User): Promise<User | null> {
         const conn = await client.connect();
-        const sql = 'SELECT password_digest FROM users WHERE username=($1)';
+        // TODO: double check this
+        const sql = 'SELECT password FROM users WHERE firstname=($1) AND lastname($2)';
 
-        const result = await conn.query(sql, [username]);
+        const result = await conn.query(sql, [firstname, lastname]);
 
-        console.log(password_digest + pepper);
+        console.log(password + pepper);
 
         if (result.rows.length) {
-            const user = result.rows[0];
+            const user: User = result.rows[0];
 
             console.log(user);
 
-            if (compareSync(password_digest + pepper, user.password_digest)) {
+            if (compareSync(password + pepper, user.password)) {
                 return user;
             }
         }
@@ -93,24 +95,6 @@ export class UserStore {
             return product;
         } catch (err) {
             throw new Error(`unable delete user (${id}): ${err}`);
-        }
-    }
-
-    async edit(id: string, { username, password_digest }: User): Promise<User> {
-        try {
-            const sql = 'UPDATE articles (username, password_digest) VALUES($2, $3) WHERE id=($1) RETURNING *';
-            const conn = await client.connect();
-
-            const hash = hashSync(password_digest + pepper, parseInt(SALT_ROUNDS!));
-            const result = await conn.query(sql, [id, username, hash]);
-
-            const user = result.rows[0];
-
-            conn.release();
-
-            return user;
-        } catch (err) {
-            throw new Error(`Could not update user id ${id} with username: ${username}. Error: ${err}`);
         }
     }
 }
