@@ -45,5 +45,3 @@ These are the notes from a meeting with the frontend developer that describe wha
 [Storefront REST API Documentation](https://ryanefendy.stoplight.io/docs/storefront-api/YXBpOjMzOTMxNzg5-storefront-api)
 
 [Storefront Database Design](https://dbdiagram.io/d/61d3d2523205b45b73d5aee3)
-
-![storefront database design](./storefront-tables.png)
