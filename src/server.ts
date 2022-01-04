@@ -1,20 +1,5 @@
-import express, { Request, Response } from 'express';
-import articles_routes from './routes/article';
-import users from './routes/user';
+import app from './app';
 
-const app = express();
-const address = '0.0.0.0:3000';
+const port = 3000;
 
-app.use(express.json());
-
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!');
-});
-
-articles_routes(app);
-
-app.use('/users', users);
-
-app.listen(3000, () => {
-    console.log(`starting app on: ${address}`);
-});
+app.listen(port, () => console.log(`server started at http://localhost:${port}`));
