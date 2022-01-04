@@ -1,0 +1,555 @@
+{
+    "info": {
+        "_postman_id": "8b24ec19-2254-4465-980d-9bc5f1f69a8d",
+        "name": "storefront-api-documentation",
+        "description": "A storefront api backend\n\nContact Support:\n Name: ryan efendy\n Email: heyryanefendy@gmail.com",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "users",
+            "item": [
+                {
+                    "name": "Create New User",
+                    "id": "7d56034a-794f-44bd-a2f7-71abe60d7885",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"firstName\": \"Bob\",\n    \"lastName\": \"Fellow\",\n    \"email\": \"bob.fellow@gmail.com\",\n    \"dateOfBirth\": \"1996-08-24\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/users",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "users"
+                            ]
+                        },
+                        "description": "Create a new user."
+                    },
+                    "response": [
+                        {
+                            "id": "5e439423-1d06-4198-a010-b0131ce889f2",
+                            "name": "User Created",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"firstName\": \"Bob\",\n    \"lastName\": \"Fellow\",\n    \"email\": \"bob.fellow@gmail.com\",\n    \"dateOfBirth\": \"1996-08-24\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/users",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": "{\n \"id\": 12,\n \"firstName\": \"Bob\",\n \"lastName\": \"Fellow\",\n \"email\": \"bob.fellow@gmail.com\",\n \"dateOfBirth\": \"1996-08-24\",\n \"emailVerified\": false,\n \"createDate\": \"2020-11-18\"\n}"
+                        },
+                        {
+                            "id": "61216880-982e-4df5-acb6-3dc17688b608",
+                            "name": "Missing Required Information",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"firstName\": \"Bob\",\n    \"lastName\": \"Fellow\",\n    \"email\": \"bob.fellow@gmail.com\",\n    \"dateOfBirth\": \"1996-08-24\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/users",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users"
+                                    ]
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        },
+                        {
+                            "id": "3ce03949-a949-424d-9dce-98329c544fb0",
+                            "name": "Email Already Taken",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"firstName\": \"Bob\",\n    \"lastName\": \"Fellow\",\n    \"email\": \"bob.fellow@gmail.com\",\n    \"dateOfBirth\": \"1996-08-24\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/users",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users"
+                                    ]
+                                }
+                            },
+                            "status": "Conflict",
+                            "code": 409,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "get-users",
+                    "id": "ccbfb899-c99e-40f4-88e3-83f5fddc5500",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/users",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "users"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "id": "8c02eaed-4859-4c7c-a289-634193e66c31",
+                            "name": "OK",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/users",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get User Info by User ID",
+                    "id": "da34628d-02bd-4948-9a9b-ed7ecc1d6bb5",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/users/:userId",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "users",
+                                ":userId"
+                            ],
+                            "variable": [
+                                {
+                                    "id": "1c8b653d-c7c7-412a-803a-ec75a2446967",
+                                    "key": "userId",
+                                    "value": "30396289",
+                                    "description": "(Required) Id of an existing user."
+                                }
+                            ]
+                        },
+                        "description": "Retrieve the information of the user with the matching user ID."
+                    },
+                    "response": [
+                        {
+                            "id": "251e8762-ca36-4311-b19e-2f5917d7014f",
+                            "name": "User Found",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/users/:userId",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        ":userId"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "userId",
+                                            "value": "30396289",
+                                            "description": "(Required) Id of an existing user."
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": "{\n \"id\": 142,\n \"firstName\": \"Alice\",\n \"lastName\": \"Smith\",\n \"email\": \"alice.smith@gmail.com\",\n \"dateOfBirth\": \"1997-10-31\",\n \"emailVerified\": true,\n \"signUpDate\": \"2019-08-24\"\n}"
+                        },
+                        {
+                            "id": "5fe6ff07-e899-490d-97da-7704e9b1b565",
+                            "name": "User Not Found",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/users/:userId",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        ":userId"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "userId",
+                                            "value": "30396289",
+                                            "description": "(Required) Id of an existing user."
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "id": "05ac07dc-e098-4748-9810-a0d4cc096795"
+        },
+        {
+            "name": "products",
+            "item": [
+                {
+                    "name": "Your GET endpoint",
+                    "id": "b19978b7-fc32-4efb-ae67-fbd3dec2b732",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "id": "ec5ad23a-e9bf-4518-af09-b56b577a6344",
+                            "name": "OK",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/products",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "products"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "post-products",
+                    "id": "663f1bfe-cdbd-477b-b21d-98c919dcae7c",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "id": "8ea32b39-2b04-4a9a-b9d6-979229c571c8",
+                            "name": "OK",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/products",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "products"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Your GET endpoint",
+                    "id": "66bca510-67b0-4700-a6d0-956abcab5bb4",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products/:productId",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products",
+                                ":productId"
+                            ],
+                            "variable": [
+                                {
+                                    "id": "28dbd423-a48e-4ea7-8323-b222aaa38476",
+                                    "key": "productId",
+                                    "value": "aliquip dolore consequat reprehenderit",
+                                    "description": "(Required) "
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "id": "2fd7d890-2e04-4b8b-ab58-f7fc1c290aab",
+                            "name": "OK",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/products/:productId",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "products",
+                                        ":productId"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "productId",
+                                            "value": "aliquip dolore consequat reprehenderit",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "id": "c0b5fe81-ff5e-43f6-addc-d78f5c0e1b65"
+        },
+        {
+            "name": "Your GET endpoint",
+            "id": "6edca10b-a500-41db-ae90-f6e15368f87f",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/orders/:userId",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "orders",
+                        ":userId"
+                    ],
+                    "variable": [
+                        {
+                            "id": "4afb1a4f-b803-4cd7-9cc5-99bcf6384c64",
+                            "key": "userId",
+                            "value": "aliquip dolore consequat reprehenderit",
+                            "description": "(Required) "
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "acf94725-3ae7-44cb-97a7-66c4cca9393d",
+                    "name": "OK",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/orders/:userId",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "orders",
+                                ":userId"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "userId",
+                                    "value": "aliquip dolore consequat reprehenderit",
+                                    "description": "(Required) "
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "text",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "text/plain"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": ""
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "id": "fc8e61d4-04d5-4ad0-950a-09ce5497bb2d",
+            "key": "baseUrl",
+            "value": "http://localhost:3000",
+            "type": "string"
+        }
+    ]
+}
