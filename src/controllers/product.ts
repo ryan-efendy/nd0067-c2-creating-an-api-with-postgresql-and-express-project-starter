@@ -5,15 +5,8 @@ const store = new ProductStore();
 
 export const getProducts = async (_req: Request, res: Response) => {
     try {
-        // const products = await store.index();
-        // res.json(products);
-        const product: Product = {
-            id: 1,
-            name: 'Product 1',
-            price: 100,
-            category: 'Category 1'
-        };
-        res.json(product);
+        const products = await store.index();
+        res.json(products);
     } catch (err) {
         res.status(400);
         res.json(err);
