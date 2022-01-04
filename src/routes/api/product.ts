@@ -1,4 +1,4 @@
-import { deleteProduct, getProduct, getProducts, createProduct } from './../controllers/product';
+import { deleteProduct, getProduct, getProducts, createProduct } from '../../controllers/product';
 import { Router } from 'express';
 
 const products = Router();
