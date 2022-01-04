@@ -42,3 +42,16 @@ export const deleteOrder = async (req: Request, res: Response) => {
         res.json(err);
     }
 };
+
+export const getOrdersByUser = async (req: Request, res: Response) => {
+    const status = (req.query.status as string) ?? null;
+    try {
+        const orders = status
+            ? await store.getOrdersByUserAndStatus(+req.params.id, status)
+            : await store.getOrdersByUser(+req.params.id);
+        res.json(orders);
+    } catch (err) {
+        res.status(400);
+        res.json(err);
+    }
+};

@@ -83,13 +83,13 @@ export class OrderStore {
         }
     }
 
-    async getCompletedOrdersByUser(user_id: number): Promise<Order> {
+    async getOrdersByUserAndStatus(user_id: number, status: string): Promise<Order> {
         try {
             //TODO: double check this query
-            const sql = 'SELECT * FROM Orders WHERE user_id=($1) AND status=complete';
+            const sql = 'SELECT * FROM Orders WHERE user_id=($1) AND status=($2)';
             const conn = await client.connect();
 
-            const result = await conn.query(sql, [user_id]);
+            const result = await conn.query(sql, [user_id, status]);
 
             const order = result.rows[0];
 
@@ -97,7 +97,7 @@ export class OrderStore {
 
             return order;
         } catch (err) {
-            throw new Error(`Could not find completed Order for userId ${user_id}. Error: ${err}`);
+            throw new Error(`Could not find Order with status ${status} for userId ${user_id}. Error: ${err}`);
         }
     }
 }
