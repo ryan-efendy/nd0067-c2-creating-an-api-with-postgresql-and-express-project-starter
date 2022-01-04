@@ -1,5 +1,10 @@
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    status VARCHAR(15),
-    user_id bigint REFERENCES users(id)
+    product_id INT UNIQUE NOT NULL,
+    user_id INT UNIQUE NOT NULL,
+    status VARCHAR NOT NULL
 );
+
+ALTER TABLE orders ADD FOREIGN KEY (product_id) REFERENCES products (id);
+
+ALTER TABLE orders ADD FOREIGN KEY (user_id) REFERENCES users (id);
