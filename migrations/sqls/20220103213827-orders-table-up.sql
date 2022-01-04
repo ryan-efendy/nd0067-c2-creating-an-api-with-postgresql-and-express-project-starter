@@ -2,6 +2,7 @@ CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     product_id INT UNIQUE NOT NULL,
     user_id INT UNIQUE NOT NULL,
+    quantity INT NOT NULL,
     status VARCHAR NOT NULL
 );
 
