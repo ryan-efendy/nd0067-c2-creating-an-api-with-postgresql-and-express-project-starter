@@ -7,8 +7,8 @@
 - connect to postgres by running `psql -h localhost -p 5432 -U postgres` and the password is `postgres`
 
 ### what ports the backend and database are running on
-- the backend api service is connected to port 3000
-- postgres is connected to the default port 5432
+- the backend api service is connected to port `3000`
+- postgres is connected to the default port `5432`
 
 ### installing packages and running the service
 1. run `npm install` to install the dependencies
