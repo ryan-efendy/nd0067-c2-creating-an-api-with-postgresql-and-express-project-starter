@@ -39,3 +39,6 @@ dist/**/*
 
 # ignore yarn.lock
 yarn.lock
+
+migrations/package.json
+migrations/sqls/package.json
