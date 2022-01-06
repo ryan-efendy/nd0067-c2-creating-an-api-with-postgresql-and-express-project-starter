@@ -5,7 +5,7 @@ import { verifyAuthToken } from '../../middlewares/verifyAuthToken';
 
 const users = Router();
 
-users.post('/', verifyAuthToken, createUser);
+users.post('/', createUser);
 
 users.post('/authenticate', authenticate);
 
