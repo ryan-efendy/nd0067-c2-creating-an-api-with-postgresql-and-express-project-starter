@@ -41,8 +41,6 @@ export class UserStore {
         if (result.rows.length) {
             const user: User = result.rows[0];
 
-            console.log(user);
-
             if (compareSync(password + pepper, user.password)) {
                 return user;
             }
