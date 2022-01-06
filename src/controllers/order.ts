@@ -43,6 +43,20 @@ export const deleteOrder = async (req: Request, res: Response) => {
     }
 };
 
+export const addProduct = async (req: Request, res: Response) => {
+    const orderId = req.params.id;
+    const productId: string = req.body.productId;
+    const quantity = Number(req.body.quantity);
+
+    try {
+        const addedProduct = await store.addProduct(quantity, orderId, productId);
+        res.json(addedProduct);
+    } catch (err) {
+        res.status(400);
+        res.json(err);
+    }
+};
+
 export const getOrdersByUser = async (req: Request, res: Response) => {
     const status = (req.query.status as string) ?? null;
     try {
