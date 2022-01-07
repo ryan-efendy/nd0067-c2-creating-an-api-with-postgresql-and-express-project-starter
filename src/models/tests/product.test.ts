@@ -1,4 +1,4 @@
-import { Product, ProductStore } from './product';
+import { Product, ProductStore } from '../product';
 const store = new ProductStore();
 
 describe('ProductStore', () => {

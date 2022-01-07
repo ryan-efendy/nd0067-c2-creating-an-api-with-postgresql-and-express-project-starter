@@ -1,4 +1,4 @@
-import { User, UserStore } from './user';
+import { User, UserStore } from '../user';
 const store = new UserStore();
 
 describe('UserStore', () => {
