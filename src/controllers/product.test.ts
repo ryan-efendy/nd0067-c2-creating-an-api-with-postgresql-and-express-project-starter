@@ -1,14 +1,22 @@
-// import { ProductStore } from '../models/product';
-// import { getProducts } from './product';
+import { mocked } from 'ts-jest/utils';
+import { mockRequest, mockResponse } from 'jest-mock-req-res';
+import { ProductStore } from '../models/product';
+import { getProducts } from './product';
 
-// const store = new ProductStore();
-// store.index = jest.fn();
+mocked(ProductStore);
 
-// describe('Product controller', () => {
-//     describe('getProducts', () => {
-//         it('should call ProductStore index', async () => {
-//             await getProducts()
-//             expect(store.index).toBeCalled();
-//         });
-//     });
-// });
+const mockIndex = jest.fn();
+jest.mock('../models/product', () => jest.fn().mockImplementation(() => ({ index: mockIndex })));
+
+describe('Product controller', () => {
+    describe('getProducts', () => {
+        it('should call ProductStore index', async () => {
+            const req = mockRequest();
+            const res = mockResponse();
+
+            const result = await getProducts(req, res);
+            console.log(result);
+            expect(mockIndex).toHaveBeenCalled();
+        });
+    });
+});
