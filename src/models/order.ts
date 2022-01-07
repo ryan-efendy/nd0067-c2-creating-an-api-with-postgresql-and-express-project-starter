@@ -1,8 +1,8 @@
 import client from '../database';
+import { Product } from './product';
 
 export type Order = {
     id?: number;
-    product_id: number;
     user_id: number;
     quantity: number;
     status: 'active' | 'complete';
@@ -37,13 +37,12 @@ export class OrderStore {
         }
     }
 
-    async create({ product_id, user_id, quantity, status }: Order): Promise<Order> {
+    async create({ user_id, quantity, status }: Order): Promise<Order> {
         let conn;
         try {
             conn = await client.connect();
-            const sql =
-                'INSERT INTO Orders (product_id, user_id, quantity, status) VALUES ($1, $2, $3, $4) RETURNING *';
-            const result = await conn.query(sql, [product_id, user_id, quantity, status]);
+            const sql = 'INSERT INTO Orders (user_id, quantity, status) VALUES ($1, $2, $3) RETURNING *';
+            const result = await conn.query(sql, [user_id, quantity, status]);
             return result.rows[0];
         } catch (error) {
             throw new Error(`Could not add new Order. Error: ${error}`);
@@ -66,7 +65,7 @@ export class OrderStore {
         }
     }
 
-    async addProduct(quantity: number, orderId: string, productId: string): Promise<Order> {
+    async addProduct(quantity: number, orderId: number, productId: number): Promise<Order> {
         try {
             const sql = 'INSERT INTO order_products (quantity, order_id, product_id) VALUES($1, $2, $3) RETURNING *';
 
@@ -81,6 +80,20 @@ export class OrderStore {
             return order;
         } catch (err) {
             throw new Error(`Could not add product ${productId} to order ${orderId}: ${err}`);
+        }
+    }
+
+    async getProducts(orderId: number): Promise<Product[]> {
+        let conn;
+        try {
+            conn = await client.connect();
+            const sql = 'SELECT * FROM order_products WHERE order_id=($1)';
+            const result = await conn.query(sql, [orderId]);
+            return result.rows;
+        } catch (error) {
+            throw new Error(`Could not find products for order ${orderId}. Error: ${error}`);
+        } finally {
+            if (conn) conn.release();
         }
     }
 
