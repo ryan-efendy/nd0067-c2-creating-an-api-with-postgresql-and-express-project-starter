@@ -3,8 +3,6 @@ import { mockRequest, mockResponse } from 'jest-mock-req-res';
 import { ProductStore } from '../models/product';
 import { getProducts } from './product';
 
-// const mockIndex = jest.fn();
-// jest.mock('../models/product', () => jest.fn().mockImplementation(() => ({ index: mockIndex })));
 jest.mock('../models/product');
 mocked(ProductStore);
 ProductStore.prototype.index = jest.fn();
