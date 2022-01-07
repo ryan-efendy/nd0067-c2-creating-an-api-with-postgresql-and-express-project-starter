@@ -7,7 +7,7 @@ export const isAuthorize = (req: Request, res: Response, next: NextFunction) => 
             const token = authorizationHeader.split(' ')[1];
             const decoded = jwt.verify(token, process.env.TOKEN_SECRET!) as jwt.JwtPayload;
             if (decoded?.id === parseInt(req.params.id)) {
-                next();
+                return next();
             }
         }
         res.status(401);

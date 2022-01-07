@@ -1,4 +1,5 @@
 @host = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJzbWl0aCIsInBhc3N3b3JkIjoiJDJiJDEwJFljVENZNC9EemJIMmo0WW5hMG5SLi5mVzM2Lzl0SXNjSG81ZHo1VGdCa3Q1RXpFQkdGb0FPIn0sImlhdCI6MTY0MTUyMzYxOX0.eSYoka9QTMMSTze87IWfh3vYWDC1iyMpwVx_8rNUceY
 
 GET {{host}}
 
@@ -36,3 +37,19 @@ content-type: application/json
 ###
 GET {{host}}/api/products
 content-type: application/json
+
+###
+POST {{host}}/api/users
+content-type: application/json
+
+{
+    "firstname": "john", 
+    "lastname": "smith",
+    "password": "password123"
+}
+
+###
+###
+GET {{host}}/api/users
+content-type: application/json
+Authorization: Bearer {{token}}
