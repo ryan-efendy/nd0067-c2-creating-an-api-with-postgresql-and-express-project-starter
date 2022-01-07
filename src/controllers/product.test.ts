@@ -3,10 +3,11 @@ import { mockRequest, mockResponse } from 'jest-mock-req-res';
 import { ProductStore } from '../models/product';
 import { getProducts } from './product';
 
+// const mockIndex = jest.fn();
+// jest.mock('../models/product', () => jest.fn().mockImplementation(() => ({ index: mockIndex })));
+jest.mock('../models/product');
 mocked(ProductStore);
-
-const mockIndex = jest.fn();
-jest.mock('../models/product', () => jest.fn().mockImplementation(() => ({ index: mockIndex })));
+ProductStore.prototype.index = jest.fn();
 
 describe('Product controller', () => {
     describe('getProducts', () => {
@@ -15,8 +16,8 @@ describe('Product controller', () => {
             const res = mockResponse();
 
             const result = await getProducts(req, res);
-            console.log(result);
-            expect(mockIndex).toHaveBeenCalled();
+            // console.log(result);
+            expect(ProductStore.prototype.index).toHaveBeenCalled();
         });
     });
 });
