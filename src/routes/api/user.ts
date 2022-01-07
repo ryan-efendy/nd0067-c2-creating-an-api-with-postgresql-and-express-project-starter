@@ -7,8 +7,6 @@ const users = Router();
 
 users.post('/', createUser);
 
-users.post('/authenticate', authenticate);
-
 users.get('/', verifyAuthToken, getUsers);
 
 users.get('/:id', verifyAuthToken, getUser);
