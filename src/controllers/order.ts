@@ -44,8 +44,8 @@ export const deleteOrder = async (req: Request, res: Response) => {
 };
 
 export const addProduct = async (req: Request, res: Response) => {
-    const orderId = req.params.id;
-    const productId: string = req.body.productId;
+    const orderId = Number(req.params.id);
+    const productId = Number(req.body.productId);
     const quantity = Number(req.body.quantity);
 
     try {
